@@ -1,0 +1,33 @@
+article {
+  display: flex;
+  border-bottom: 1px solid gainsboro;
+  border-right: 1px solid gainsboro;
+  height: 15vh;
+  gap: 5vw;
+  padding: 1vw;
+
+  & .img__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 3vw;
+
+    & img {
+      max-height: 13vh;
+      width: auto;
+    }
+  }
+
+  .beer__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    & p {
+      font-size: 1.1vw;
+      color: gainsboro;
+      margin-top: 0;
+    }
+  }
+}
