@@ -10,28 +10,28 @@ import CreatePage from "../Pages/CreatePage/CreatePage";
 function NavBar() {
   return (
     <>
-      {/* <nav>
-        <Link to={<HomePage />}>
+      <nav>
+        <Link to="/">
           <div>
             <img src="" alt="Home Page" />
           </div>
         </Link>
-        <Link to={<SearchPage />}>
+        <Link to="/search">
           <div>
             <img src="" alt="Search Page" />
           </div>
         </Link>
-        <Link to={<FavPage />}>
+        <Link to="/Favories">
           <div>
             <img src="" alt="Fav Page" />
           </div>
         </Link>
-        <Link to={<CreatePage />}>
+        <Link to="/create">
           <div>
             <img src="" alt="Create Page" />
           </div>
         </Link>
-      </nav> */}
+      </nav>
     </>
   );
 }

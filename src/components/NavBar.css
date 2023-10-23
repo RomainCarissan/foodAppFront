@@ -1,0 +1,12 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(221, 141, 50);
+  margin-bottom: 3vh;
+
+  & img {
+    width: 3vw;
+    padding: 1vw;
+  }
+}
