@@ -54,8 +54,8 @@ function HomePage() {
         {meals.map((meal) => {
           return (
             <Link
-              key={meal.idMeal}
-              to={`/meals/${meal.idMeal}`}
+              key={meal.id}
+              to={`/meals/${meal.id}`}
               data-hidden={meal.data_hidden ? meal.data_hidden : "false"}
             >
               <div className="meal">

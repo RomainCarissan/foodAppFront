@@ -9,19 +9,19 @@ function FilterPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   let currentFilteredMeals = filteredMeals;
-  const { category } = useParams();
+  const { area } = useParams();
   //const { filter} = useParams();
   /* const area = searchParams.get("area");
   const category = searchParams.get("category"); */
   /* console.log(area, category); */
-  const formatedCategory = category.charAt(0).toUpperCase() + category.slice(1);
-  console.log(formatedCategory);
+  const formatedArea = area.charAt(0).toUpperCase() + area.slice(1);
+  console.log(formatedArea);
 
   useEffect(() => {
     const fetchFilteredMeals = async () => {
       try {
         const response = await axios.get(
-          `https://foodapp.adaptable.app/meals?category=${formatedCategory}`
+          `https://foodapp.adaptable.app/meals?area=${formatedArea}`
         );
         //console.log(response.data);
         /* let response;
@@ -41,7 +41,7 @@ function FilterPage() {
       }
     };
     fetchFilteredMeals();
-  }, [formatedCategory]);
+  }, [formatedArea]);
 
   if (!filteredMeals) {
     return <p>Loading...</p>;

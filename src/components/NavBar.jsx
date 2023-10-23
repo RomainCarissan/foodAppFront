@@ -21,7 +21,7 @@ function NavBar() {
             <img src="" alt="Search Page" />
           </div>
         </Link>
-        <Link to="/Favories">
+        <Link to="/favorites">
           <div>
             <img src="" alt="Fav Page" />
           </div>
