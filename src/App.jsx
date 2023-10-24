@@ -1,10 +1,9 @@
 import "./App.css";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./Pages/HomePage/HomePage";
 import SearchPage from "./Pages/SearchPage/SearchPage";
 import FilterPage from "./Pages/FilterPage/FilterPage";
-import FilterCountryPage from "./Pages/FilterCountryPage/FilterCountryPage";
 import ReceipePage from "./Pages/ReceipePage/ReceipePage";
 import FavPage from "./Pages/FavPage/FavPage";
 import CreatePage from "./Pages/CreatePage/CreatePage";
