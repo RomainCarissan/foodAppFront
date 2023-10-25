@@ -1,17 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 /* import url from "https://foodapp.adaptable.app/meals"; */
 import axios from "axios";
 import "./HomePage.css";
 
 function HomePage() {
+  const [searchParams] = useSearchParams();
   const [meals, setMeals] = useState(null);
   /* const [search, setSearch] = useState(""); */
+  const query = searchParams.get("query");
 
   let currentMeals = meals;
 
   async function fetchMeals() {
+    // console.log("Fetching", query);
     try {
       const response = await axios.get("https://foodapp.adaptable.app/meals");
       setMeals(response.data);
@@ -23,6 +26,23 @@ function HomePage() {
   useEffect(() => {
     fetchMeals();
   }, []);
+
+  let filteredMeals;
+  if (query) {
+    filteredMeals = meals.filter((meal) => {
+      // Check if some ingredients have a specific value
+      const isThereTheIngredient = meal.ingredients.some((ingredient) => {
+        const myRegex = new RegExp(query, "gi");
+        return myRegex.test(ingredient.ingredient);
+      });
+      const isThereTheName = meal.name
+        .toLowerCase()
+        .includes(query.toLowerCase());
+      return isThereTheIngredient || isThereTheName;
+    });
+  } else {
+    filteredMeals = meals;
+  }
 
   if (!meals) {
     return <p>Loading...</p>;
@@ -51,7 +71,7 @@ function HomePage() {
             }}
           />
         </form> */}
-        {meals.map((meal) => {
+        {filteredMeals.map((meal) => {
           return (
             <Link
               key={meal.id}
