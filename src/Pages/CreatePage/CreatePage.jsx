@@ -8,7 +8,7 @@ function CreatePage() {
     area: "",
     category: "",
     instruction: "",
-    ingredients: [{ name: "", quantity: "" }],
+    ingredients: [{ ingredient: "", quantity: "" }],
     image: "",
     video: "",
   });
@@ -49,9 +49,39 @@ function CreatePage() {
   const handleAddIngredient = () => {
     setRecipe({
       ...recipe,
-      ingredients: [...recipe.ingredients, { name: "", quantity: "" }],
+      ingredients: [...recipe.ingredients, { ingredient: "", quantity: "" }],
     });
   };
+
+  const handleIngredientChange = (event, index, field) => {
+    const updatedIngredients = [...recipe.ingredients];
+    updatedIngredients[index][field] = event.target.value;
+    setRecipe({ ...recipe, ingredients: updatedIngredients });
+  };
+
+  /* const handleImageUpload = async (event) => {
+    event.preventDefault();
+    const imageFile = event.target.files[0];
+
+    try {
+      // const formData = new FormData();
+      //formData.append("image", imageFile); 
+
+      const response = await axios.post(
+        "https://foodapp.adaptable.app/meals",
+        recipe
+        // formData 
+      );
+      const imageURL = response.data.imageUrl;
+      setRecipe({
+        ...recipe,
+        image: imageURL,
+      });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  }; */
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -65,7 +95,7 @@ function CreatePage() {
         area: "",
         category: "",
         instruction: "",
-        ingredients: [{ name: "", quantity: "" }],
+        ingredients: [{ ingredient: "", quantity: "" }],
         image: "",
         video: "",
       });
@@ -97,7 +127,9 @@ function CreatePage() {
           >
             <option value="">Select category</option>
             {categoriesList.map((category) => (
-              <option value={category}>{category}</option>
+              <option key={category} value={category}>
+                {category}
+              </option>
             ))}
           </select>
         </div>
@@ -111,7 +143,11 @@ function CreatePage() {
           >
             <option value="">Select Area</option>
             {areasList.map((area) => {
-              return <option value={area}>{area}</option>;
+              return (
+                <option key={area} value={area}>
+                  {area}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -129,14 +165,14 @@ function CreatePage() {
         <div>
           <label htmlFor="ingredients">Ingredients</label>
 
-          {recipe.ingredients.map((ingredient) => (
-            <div key={ingredient}>
+          {/* {recipe.ingredients.map((ingredients, index) => (
+            <div key={index}>
               <input
                 required="required"
                 type="text"
                 placeholder="name"
-                value={recipe.ingredients.name}
-                onChange={handleChange}
+                value={recipe.ingredients.ingredient}
+                onChange={(e) => handleChange(e, index, `ingredient`)}
               />
 
               <input
@@ -144,7 +180,26 @@ function CreatePage() {
                 type="text"
                 placeholder="Quantity"
                 value={recipe.ingredients.quantity}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, index, `quantity`)}
+              />
+            </div>
+          ))} */}
+
+          {recipe.ingredients.map((ingredient, index) => (
+            <div key={index}>
+              <input
+                required="required"
+                type="text"
+                placeholder="name"
+                value={ingredient.ingredient}
+                onChange={(e) => handleIngredientChange(e, index, "ingredient")}
+              />
+              <input
+                required="required"
+                type="text"
+                placeholder="Quantity"
+                value={ingredient.quantity}
+                onChange={(e) => handleIngredientChange(e, index, "quantity")}
               />
             </div>
           ))}
@@ -159,9 +214,12 @@ function CreatePage() {
         <div>
           <label htmlFor="image">Image</label>
           <input
-            // required="required"
+            required="required"
+            //type="file"
             type="text"
+            //accept="image/*"
             name="image"
+            placeholder="Image URL"
             value={recipe.image}
             onChange={handleChange}
           />
@@ -171,6 +229,7 @@ function CreatePage() {
           <input
             type="text"
             name="video"
+            placeholder="Video URL"
             value={recipe.data}
             onChange={handleChange}
           />

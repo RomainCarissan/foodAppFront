@@ -119,9 +119,9 @@ function SearchBar() {
         value={searchInput.query}
         onChange={handleChange}
       />
-      {/*  <Link to={`/query?${query}`}> */}
-      <button>Search</button>
-      {/*  </Link> */}
+      <Link to={`/?query=${searchInput.get("query")}`}>
+        <button>Search</button>
+      </Link>
 
       {/* <div className="search-bar-elements">
         {mealsIngredients.map((meal) => (

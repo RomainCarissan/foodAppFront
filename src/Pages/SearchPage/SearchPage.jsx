@@ -19,16 +19,20 @@ function SearchPage() {
       const response = await axios.get("https://foodapp.adaptable.app/meals");
       const mealData = response.data;
       setAllMeals(mealData);
-      const uniqueCategories = [
+      let uniqueCategories = [
         ...new Set(mealData.map((meal) => meal.category)),
       ];
-      const uniqueCountries = [...new Set(mealData.map((meal) => meal.area))];
+      uniqueCategories = uniqueCategories.filter(Boolean);
+      let uniqueCountries = [...new Set(mealData.map((meal) => meal.area))];
+      uniqueCountries = uniqueCountries.filter(Boolean);
       setCategories(uniqueCategories);
       setCountries(uniqueCountries);
     } catch (error) {
       console.log(error);
     }
   }
+
+  console.log(categories);
 
   useEffect(() => {
     fetchFilter();
@@ -48,6 +52,7 @@ function SearchPage() {
       <div className="all-categories">
         <h2>Categories : </h2>
         {categories.map((category) => {
+          // console.log(category);
           return (
             <Link key={category} to={`/search/${category.toLowerCase()}`}>
               <div className="category">
