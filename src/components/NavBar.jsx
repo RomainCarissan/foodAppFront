@@ -10,7 +10,7 @@ import CreatePage from "../Pages/CreatePage/CreatePage";
 function NavBar() {
   return (
     <>
-      <nav>
+      <nav className="bottom-nav">
         <Link to="/">
           <div>
             <img src="" alt="Home Page" />

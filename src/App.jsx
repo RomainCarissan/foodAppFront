@@ -9,12 +9,14 @@ import ReceipePage from "./Pages/ReceipePage/ReceipePage";
 import FavPage from "./Pages/FavPage/FavPage";
 import CreatePage from "./Pages/CreatePage/CreatePage";
 import Navbar from "./components/NavBar";
-import ConnexionPage from "./Pages/ConnexionPage/ConnexionPage";
+import SearchBar from "./components/SearchBar/SearchBar";
+/* import ConnexionPage from "./Pages/ConnexionPage/ConnexionPage"; */
 
 function App() {
   return (
     <>
       <Navbar />
+      <SearchBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
@@ -23,7 +25,7 @@ function App() {
         <Route path="/meals/:id" element={<ReceipePage />} />
         <Route path="/favorites" element={<FavPage />} />
         <Route path="/create" element={<CreatePage />} />
-        <Route path="/connexion" element={<ConnexionPage />} />
+        {/*  <Route path="/connexion" element={<ConnexionPage />} /> */}
       </Routes>
     </>
   );

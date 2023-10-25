@@ -32,7 +32,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="all-meals">
+      <div className="container">
         {/* <form action="">
           <input
             placeholder="Seach"

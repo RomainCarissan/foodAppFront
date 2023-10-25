@@ -44,7 +44,7 @@ function SearchPage() {
 
   return (
     <>
-      <h1>What do you want cook today ?</h1>
+      <h1>What do you want to cook today ?</h1>
       <div className="all-categories">
         <h2>Categories : </h2>
         {categories.map((category) => {
