@@ -22,7 +22,7 @@ function RegisterPage() {
         members
       );
       console.log("member added successfully:", response.data);
-      localStorage.setItem("id", response.data.id);
+      localStorage.setItem("user", response.data);
       setMembers({
         username: "",
         login: "",

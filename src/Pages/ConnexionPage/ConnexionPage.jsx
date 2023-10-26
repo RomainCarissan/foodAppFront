@@ -8,31 +8,17 @@ function ConnexionPage() {
   const [members, setMembers] = useState(null);
   const [idInput, setIdInput] = useState("");
   const [pdInput, setPdInput] = useState("");
-  let idArr = [];
+  //   let idArr = [];
 
-  useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await axios.get(
-          `https://foodapp.adaptable.app/members`
-        );
-        // const filtered = response.data[0].filter((id) => params.id === id);
-        // console.log(filtered);
-        // const receipeData = response.data[(id =params.id)];
-        setMembers(response.data);
-        console.log(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    };
+  //   useEffect(() => {
+  //     const fetchMembers = async () => {
+  //     };
 
-    fetchMembers();
-  }, []);
-  if (!members) {
-    return <p>Loading...</p>;
-  }
+  //     fetchMembers();
+  //   }, []);
+  //   if (!members) {
+  //     return <p>Loading...</p>;
+  // }
   //   if (members.id === textImput.name && members.login === textImput.password) {
   // Link to favPage
   //   } else {
@@ -40,30 +26,48 @@ function ConnexionPage() {
   //   }
   //   window.localStorage.setItem("id", members.id);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    idArr.push(idInput);
-    idArr.push(pdInput);
-    console.log(idArr);
-    const usernameConnected = idArr[0];
-    // console.log(usernameConnected);
-    const loginConnected = idArr[1];
-    // console.log(loginConnected);
-    {
-      //   idArr.map((favId) =>
-      members.map((member) => (
-        <React.Fragment key={member.id}>
-          {console.log(member.login)}
-          {console.log(loginConnected)}
-          {usernameConnected === member.username &&
-          loginConnected === member.login
-            ? localStorage.setItem("id", member.id)
-            : console.log("raté")}
-          {/* {console.log(idmeal)} */}
-        </React.Fragment>
-      ));
-      //   );
+    try {
+      const response = await axios.get(
+        `https://foodapp.adaptable.app/members?username=${idInput}&login=${pdInput}`
+      );
+      // const filtered = response.data[0].filter((id) => params.id === id);
+      // console.log(filtered);
+      // const receipeData = response.data[(id =params.id)];
+      // setMembers(response.data);
+      console.log(response.data[0]);
+      if (!response.data[0]) {
+        return console.log("You're not connected");
+      }
+      localStorage.setItem("user", JSON.stringify(response.data[0]));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
     }
+    // idArr.push(idInput);
+    // idArr.push(pdInput);
+    // console.log(idArr);
+    // const usernameConnected = idArr[0];
+    // // console.log(usernameConnected);
+    // const loginConnected = idArr[1];
+    // // console.log(loginConnected);
+    // {
+    //   //   idArr.map((favId) =>
+    //   members.map((member) => (
+    //     <React.Fragment key={member.id}>
+    //       {console.log(member.login)}
+    //       {console.log(loginConnected)}
+    //       {usernameConnected === member.username &&
+    //       loginConnected === member.login
+    //         ? localStorage.setItem("id", member.id)
+    //         : console.log("raté")}
+    //       {/* {console.log(idmeal)} */}
+    //     </React.Fragment>
+    //   ));
+    //   //   );
+    // }
   };
   return (
     <div>
