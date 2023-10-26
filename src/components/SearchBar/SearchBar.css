@@ -103,3 +103,9 @@
 .LoginButton {
   padding-right: 5vw;
 }
+
+#searchIcon {
+  height: 25px;
+  margin-left: -0.7rem;
+  margin-top: -1rem;
+}

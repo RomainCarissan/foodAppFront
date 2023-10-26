@@ -7,6 +7,7 @@ import "./SearchBar.css";
 import HomePage from "../../Pages/HomePage/HomePage";
 import { Navigate } from "react-router-dom";
 import logoBonApp from "../images/logoBonApp.png";
+import searchIcon from "../images/searchIcon.png";
 
 function SearchBar() {
   /* const [recipes, setRecipes] = useState([]);
@@ -130,6 +131,7 @@ function SearchBar() {
           <Link to={`/?query=${searchInput.get("query")}`}>
             <button className="searchButton">
               {/* <i className="fa fa-search"></i> */}
+              <img id="searchIcon" src={searchIcon} alt="search-icon" />
             </button>
           </Link>
         </div>

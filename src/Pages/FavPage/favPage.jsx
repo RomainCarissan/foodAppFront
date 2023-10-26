@@ -52,34 +52,32 @@ function favPage() {
 
   return (
     <>
-      <div className="all-meals">
-        <div className="all-meals">
-          {arrFav.map((idmeal) =>
-            meals.map((meal) => (
-              <React.Fragment key={meal.id}>
-                {Number(idmeal) === Number(meal.id) ? (
-                  <Link
-                    to={`/meals/${meal.id}`}
-                    data-hidden={meal.data_hidden ? meal.data_hidden : "false"}
-                  >
-                    {/* {console.log(member)} */}
-                    <div className="meal">
-                      <div className="meal-img">
-                        <img src={meal.image} alt={`${meal.name} Image`} />
-                      </div>
-                      <div className="meal-info">
-                        <h3>{meal.name}</h3>
-                      </div>
+      <div className="container">
+        {arrFav.map((idmeal) =>
+          meals.map((meal) => (
+            <React.Fragment key={meal.id}>
+              {Number(idmeal) === Number(meal.id) ? (
+                <Link
+                  to={`/meals/${meal.id}`}
+                  data-hidden={meal.data_hidden ? meal.data_hidden : "false"}
+                >
+                  {/* {console.log(member)} */}
+                  <div className="meal">
+                    <div className="meal-img">
+                      <img src={meal.image} alt={`${meal.name} Image`} />
                     </div>
-                  </Link>
-                ) : (
-                  <p> </p>
-                )}
-                {/* {console.log(idmeal)} */}
-              </React.Fragment>
-            ))
-          )}
-        </div>
+                    <div className="meal-info">
+                      <h3>{meal.name}</h3>
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <p> </p>
+              )}
+              {/* {console.log(idmeal)} */}
+            </React.Fragment>
+          ))
+        )}
       </div>
     </>
   );

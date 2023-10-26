@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./CreatePage.css";
 
 function CreatePage() {
   const [recipe, setRecipe] = useState({
@@ -107,12 +108,14 @@ function CreatePage() {
     }
   };
   return (
-    <div>
+    <div className="createDiv">
       <h2>Add New Recipe</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="createDiv">
           <label htmlFor="name">Name</label>
+          <br />
           <input
+            className="inputCreate"
             required="required"
             type="text"
             name="name"
@@ -120,9 +123,11 @@ function CreatePage() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="createDiv">
           <label htmlFor="category">Category</label>
+          <br />
           <select
+            className="inputCreate"
             required="required"
             name="category"
             value={recipe.category}
@@ -136,9 +141,11 @@ function CreatePage() {
             ))}
           </select>
         </div>
-        <div>
+        <div className="createDiv">
           <label htmlFor="area">Area</label>
+          <br />
           <select
+            className="inputCreate"
             required="required"
             name="area"
             value={recipe.area}
@@ -155,9 +162,11 @@ function CreatePage() {
           </select>
         </div>
 
-        <div>
+        <div className="createDiv">
           <label htmlFor="instruction">Instruction</label>
+          <br />
           <textarea
+            className="inputCreate"
             required="required"
             type="text"
             name="instruction"
@@ -165,11 +174,11 @@ function CreatePage() {
             onChange={handleChange}
           ></textarea>
         </div>
-        <div>
+        <div className="createDiv">
           <label htmlFor="ingredients">Ingredients</label>
 
           {/* {recipe.ingredients.map((ingredients, index) => (
-            <div key={index}>
+            <div className="createDiv" key={index}>
               <input
                 required="required"
                 type="text"
@@ -189,34 +198,40 @@ function CreatePage() {
           ))} */}
 
           {recipe.ingredients.map((ingredient, index) => (
-            <div key={index}>
+            <div className="createDiv" key={index}>
               <input
+                className="inputCreate"
                 required="required"
                 type="text"
-                placeholder="name"
+                placeholder="Ingredient"
                 value={ingredient.ingredient}
                 onChange={(e) => handleIngredientChange(e, index, "ingredient")}
               />
               <input
+                className="inputCreate"
                 required="required"
                 type="text"
                 placeholder="Quantity"
                 value={ingredient.quantity}
                 onChange={(e) => handleIngredientChange(e, index, "quantity")}
               />
+              <br />
+              <br />
             </div>
           ))}
 
-          <div>
+          <div className="createDiv">
             <button type="button" onClick={handleAddIngredient}>
               Add Ingredient
             </button>
           </div>
         </div>
 
-        <div>
+        <div className="createDiv">
           <label htmlFor="image">Image</label>
+          <br />
           <input
+            className="inputCreate"
             required="required"
             //type="file"
             type="text"
@@ -227,9 +242,11 @@ function CreatePage() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="createDiv">
           <label htmlFor="video">Video Link</label>
+          <br />
           <input
+            className="inputCreate"
             type="text"
             name="video"
             placeholder="Video URL"
@@ -237,7 +254,7 @@ function CreatePage() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="createDiv">
           <button type="submit">Add Recipe</button>
         </div>
       </form>
