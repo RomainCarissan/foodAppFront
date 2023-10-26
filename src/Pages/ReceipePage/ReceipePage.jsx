@@ -2,9 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "./RecipePage.css";
 
 import { Link } from "react-router-dom";
-
 
 function ReceipePage() {
   const [oneReceipe, setOneReceipe] = useState(null);
@@ -75,7 +75,6 @@ function ReceipePage() {
       }
     };
 
-
     fetchOneReceipe();
   }, [params.id]);
   if (loading) {
@@ -87,47 +86,71 @@ function ReceipePage() {
   }
   const ingredients = oneReceipe.ingredients;
 
-
   const handleAddToFavorite = async (id) => {
     user.favorite.push({ id: String(id) });
     await updateUser();
     setIsFavorite(!isFavorite);
-
   };
 
   return (
-    <>
-      <h2>Receipe</h2>
-      <div>
-        <img className="photo" src={oneReceipe.image} />
-        <h2>{oneReceipe.name}</h2>
-
-        {/* {console.log(ingredients)} */}
-
-        <div>
-          {ingredients.map((ingredient) => {
-            return (
-              <>
-                <li>
-                  Ingredient : {ingredient.ingredient} Quantity :
-                  {ingredient.quantity}
-                </li>
-              </>
-            );
-          })}
+    <div>
+      <div className="photoIngredient">
+        <div className="photoTitle">
+          <img className="photo" src={oneReceipe.image} />
+          <h2>{oneReceipe.name}</h2>
+          <p className="category">Category : {oneReceipe.category}</p>
+          <p className="area">Area : {oneReceipe.area}</p>
+          <button onClick={() => handleAddToFavorite(oneReceipe.id)}>
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
         </div>
-        <p>Instructions : {oneReceipe.instructions}</p>
-        <p>Area : {oneReceipe.area}</p>
+        <div>
+          {/* {console.log(ingredients)} */}
+          <div className="title">Ingredients</div>
 
-        <Link key={oneReceipe.video} to={oneReceipe.video} target="_blank">
-          <p>{oneReceipe.video}</p>
-        </Link>
-        <button onClick={() => handleAddToFavorite(oneReceipe.id)}>
-          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-        </button>
+          <div>
+            {ingredients.map((ingredient) => {
+              return (
+                <>
+                  <table className="ingredients">
+                    <tbody>
+                      <tr>
+                        <td>{ingredient.ingredient}: </td>
+                        <td className="quantity">{ingredient.quantity}</td>
+                      </tr>
+                    </tbody>
+                    {/* <div>{ingredient.ingredient}</div>
+                  <div>Quantity : </div>
+                  <div> {ingredient.quantity}</div> */}
+                  </table>
+                  {/* <li className="quantity">
 
+                </li> */}
+                </>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </>
+      <div className="instructionsBlock">
+        <h3>Instructions : </h3>
+        <p className="instructionsRecipe">{oneReceipe.instructions}</p>
+      </div>
+      <div>
+        <Link to={oneReceipe.video} target="_blank">
+          <button className="video"> Video tutorial </button>
+        </Link>
+        {/* <p className="videoTitle">Video tutorial:</p>
+        <Link
+          className="video"
+          key={oneReceipe.video}
+          to={oneReceipe.video}
+          target="_blank"
+        >
+          <p>{oneReceipe.video}</p>
+        </Link> */}
+      </div>
+    </div>
   );
 }
 export default ReceipePage;
