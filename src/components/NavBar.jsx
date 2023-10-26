@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./Navbar.css";
+import "./NavBar.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
-import FavPage from "../Pages/FavPage/FavPage";
+import FavPage from "../Pages/FavPage/favPage";
 import CreatePage from "../Pages/CreatePage/CreatePage";
 
 function NavBar() {
   return (
     <>
-      <nav>
-        <Link to="/">
+      <nav className="bottom-nav">
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+        >
           <div>
             <img src="" alt="Home Page" />
           </div>

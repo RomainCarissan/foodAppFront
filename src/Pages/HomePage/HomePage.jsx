@@ -1,22 +1,33 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 /* import url from "https://foodapp.adaptable.app/meals"; */
 import axios from "axios";
 import "./HomePage.css";
 
 function HomePage() {
+  const [searchParams] = useSearchParams();
   const [meals, setMeals] = useState(null);
   /* const [search, setSearch] = useState(""); */
+  const query = searchParams.get("query");
 
-  let currentMeals = meals;
+  // let currentMeals = meals;
 
   async function fetchMeals() {
+    // console.log("Fetching", query);
     try {
       const response = await axios.get("https://foodapp.adaptable.app/meals");
-      setMeals(response.data);
+
+      setMeals(response.data.filter((x) => Boolean(x.ingredients)));
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
@@ -28,11 +39,31 @@ function HomePage() {
     return <p>Loading...</p>;
   }
 
+  let filteredMeals;
+  if (query) {
+    filteredMeals = meals.filter((meal) => {
+      console.log(meal);
+      // Check if some ingredients have a specific value
+      const isThereTheIngredient = meal.ingredients.some((ingredient) => {
+        const myRegex = new RegExp(query, "gi");
+        return myRegex.test(ingredient.ingredient);
+      });
+      const isThereTheName = meal.name
+        .toLowerCase()
+        .includes(query.toLowerCase());
+      return isThereTheIngredient || isThereTheName;
+    });
+  } else {
+    filteredMeals = meals;
+  }
+
   /* console.log("meal", meals); */
+
+  /* shuffleArray(filteredMeals); */
 
   return (
     <>
-      <div className="all-meals">
+      <div className="container">
         {/* <form action="">
           <input
             placeholder="Seach"
@@ -51,7 +82,7 @@ function HomePage() {
             }}
           />
         </form> */}
-        {meals.map((meal) => {
+        {filteredMeals.map((meal) => {
           return (
             <Link
               key={meal.id}

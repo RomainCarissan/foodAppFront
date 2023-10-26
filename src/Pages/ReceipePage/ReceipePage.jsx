@@ -2,13 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
 import { Link } from "react-router-dom";
+
 
 function ReceipePage() {
   const [oneReceipe, setOneReceipe] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const [isFavorite, setIsFavorite] = useState(null);
   // const [favMember, setFavMember] = useState(null);
+
   const params = useParams();
 
   // dernier ajout
@@ -50,6 +54,7 @@ function ReceipePage() {
   }
 
   // console.log(params.id);
+
   useEffect(() => {
     const fetchOneReceipe = async () => {
       try {
@@ -60,13 +65,16 @@ function ReceipePage() {
         // console.log(filtered);
         // const receipeData = response.data[(id =params.id)];
         setOneReceipe(response.data[0]);
+
         // console.log(response.data);
+
         setLoading(false);
       } catch (error) {
         console.log(error);
         setLoading(false);
       }
     };
+
 
     fetchOneReceipe();
   }, [params.id]);
@@ -79,10 +87,12 @@ function ReceipePage() {
   }
   const ingredients = oneReceipe.ingredients;
 
+
   const handleAddToFavorite = async (id) => {
     user.favorite.push({ id: String(id) });
     await updateUser();
     setIsFavorite(!isFavorite);
+
   };
 
   return (
@@ -91,7 +101,9 @@ function ReceipePage() {
       <div>
         <img className="photo" src={oneReceipe.image} />
         <h2>{oneReceipe.name}</h2>
+
         {/* {console.log(ingredients)} */}
+
         <div>
           {ingredients.map((ingredient) => {
             return (
@@ -106,12 +118,14 @@ function ReceipePage() {
         </div>
         <p>Instructions : {oneReceipe.instructions}</p>
         <p>Area : {oneReceipe.area}</p>
+
         <Link key={oneReceipe.video} to={oneReceipe.video} target="_blank">
           <p>{oneReceipe.video}</p>
         </Link>
         <button onClick={() => handleAddToFavorite(oneReceipe.id)}>
           {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
+
       </div>
     </>
   );
