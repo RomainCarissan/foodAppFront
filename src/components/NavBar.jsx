@@ -10,8 +10,13 @@ import CreatePage from "../Pages/CreatePage/CreatePage";
 function NavBar() {
   return (
     <>
-      <nav>
-        <Link to="/">
+      <nav className="bottom-nav">
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+        >
           <div>
             <img src="" alt="Home Page" />
           </div>

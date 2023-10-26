@@ -19,16 +19,20 @@ function SearchPage() {
       const response = await axios.get("https://foodapp.adaptable.app/meals");
       const mealData = response.data;
       setAllMeals(mealData);
-      const uniqueCategories = [
+      let uniqueCategories = [
         ...new Set(mealData.map((meal) => meal.category)),
       ];
-      const uniqueCountries = [...new Set(mealData.map((meal) => meal.area))];
+      uniqueCategories = uniqueCategories.filter(Boolean);
+      let uniqueCountries = [...new Set(mealData.map((meal) => meal.area))];
+      uniqueCountries = uniqueCountries.filter(Boolean);
       setCategories(uniqueCategories);
       setCountries(uniqueCountries);
     } catch (error) {
       console.log(error);
     }
   }
+
+  console.log(categories);
 
   useEffect(() => {
     fetchFilter();
@@ -41,19 +45,34 @@ function SearchPage() {
   /* const filteredMeals = selectedCategory
     ? allMeals.filter((meal) => meal.category === selectedCategory)
     : allMeals; */
+  function getRandomDish(categoryOrArea) {
+    const matchingDishes = allMeals.filter(
+      (meal) => meal.category === categoryOrArea || meal.area === categoryOrArea
+    );
+
+    if (matchingDishes.length > 0) {
+      const randomDish =
+        matchingDishes[Math.floor(Math.random() * matchingDishes.length)];
+      return randomDish.image; // Assuming "image" is the property for the dish image
+    }
+
+    // Return a placeholder image if no matching dish is found
+    return "https://zechef.com/wp-content/uploads/2020/09/saucisse-droite-ardeche-boutiquedessaucissons.jpg"; // Replace with the actual path to a placeholder image
+  }
 
   return (
     <>
-      <h1>What do you want cook today ?</h1>
+      <h1>What do you want to cook today ?</h1>
       <div className="all-categories">
         <h2>Categories : </h2>
         {categories.map((category) => {
+          // console.log(category);
           return (
             <Link key={category} to={`/search/${category.toLowerCase()}`}>
               <div className="category">
                 <div className="category-img">
                   <img
-                    src="https://tse3.mm.bing.net/th?id=OIP.4AlkCCZp4Y_HExxSvCZgLAHaEw&pid=Api"
+                    src={getRandomDish(category)}
                     style={{ height: "10vw" }}
                     alt={`${category} Image`}
                   />
@@ -74,7 +93,7 @@ function SearchPage() {
               <div className="country">
                 <div className="country-img">
                   <img
-                    src="https://tse3.mm.bing.net/th?id=OIP.4AlkCCZp4Y_HExxSvCZgLAHaEw&pid=Api"
+                    src={getRandomDish(country)}
                     style={{ height: "10vw" }}
                     alt={`${country} Image`}
                   />
