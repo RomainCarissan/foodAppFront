@@ -15,29 +15,6 @@ function ReceipePage() {
 
   const params = useParams();
 
-  // dernier ajout
-
-  // async function fetchMembers() {
-  //   try {
-  //     const response = await axios.get("https://foodapp.adaptable.app/members");
-  //     // setFavMember(answer.data[userId].favorite);
-  //     // const fav = answer.data[0].favorite;
-  //     // const user = answer.data.find((user) => user.id === userId);
-  //     const user = response.data;
-  //     // console.log(user);
-  //     if (user) {
-  //       setFavMember(user);
-  //     } else {
-  //       console.log("User not found");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // useEffect(() => {
-  //   fetchMembers();
-  // }, []);
-  // dernier ajout
   let user = JSON.parse(localStorage.getItem("user"));
 
   async function updateUser() {
@@ -86,11 +63,34 @@ function ReceipePage() {
   }
   const ingredients = oneReceipe.ingredients;
 
-  const handleAddToFavorite = async (id) => {
+  const addToFavorites = (id) => {
     user.favorite.push({ id: String(id) });
-    await updateUser();
-    setIsFavorite(!isFavorite);
+    updateUser(user);
+    setIsFavorite(true);
   };
+
+  const removeFromFavorites = (id) => {
+    user.favorite = user.favorite.filter(
+      (favorite) => favorite.id !== String(id)
+    );
+    updateUser(user);
+    setIsFavorite(false);
+  };
+
+  // const handleAddToFavorite = async (id) => {
+  //   if (isFavorite) {
+  //     user.favorite = user.favorite.filter(
+  //       (favorite) => favorite.id !== String(id)
+  //     );
+  //   } else {
+  //     user.favorite.push({ id: String(id) });
+  //   }
+
+  //   // console.log("Updated User:", user);
+
+  //   await updateUser(user);
+  //   setIsFavorite(!isFavorite);
+  // };
 
   return (
     <div>
@@ -100,9 +100,20 @@ function ReceipePage() {
           <h2>{oneReceipe.name}</h2>
           <p className="category">Category : {oneReceipe.category}</p>
           <p className="area">Area : {oneReceipe.area}</p>
-          <button onClick={() => handleAddToFavorite(oneReceipe.id)}>
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          <div className="favButton">
+            <button
+              className="addFav"
+              onClick={() => addToFavorites(oneReceipe.id)}
+            >
+              Add to Favorites
+            </button>
+            <button
+              className="removeFav"
+              onClick={() => removeFromFavorites(oneReceipe.id)}
+            >
+              Remove from Favorites
+            </button>
+          </div>
         </div>
         <div>
           {/* {console.log(ingredients)} */}
@@ -119,9 +130,6 @@ function ReceipePage() {
                         <td className="quantity">{ingredient.quantity}</td>
                       </tr>
                     </tbody>
-                    {/* <div>{ingredient.ingredient}</div>
-                  <div>Quantity : </div>
-                  <div> {ingredient.quantity}</div> */}
                   </table>
                   {/* <li className="quantity">
 
@@ -140,15 +148,6 @@ function ReceipePage() {
         <Link to={oneReceipe.video} target="_blank">
           <button className="video"> Video tutorial </button>
         </Link>
-        {/* <p className="videoTitle">Video tutorial:</p>
-        <Link
-          className="video"
-          key={oneReceipe.video}
-          to={oneReceipe.video}
-          target="_blank"
-        >
-          <p>{oneReceipe.video}</p>
-        </Link> */}
       </div>
     </div>
   );
