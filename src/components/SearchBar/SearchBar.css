@@ -2,17 +2,33 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding: 5px 5px;
+  /* padding: 5px 5px; */
   width: 100%;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  text-align: right;
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Distribute space between left and right sections */
+  align-items: center;
 }
 
-.search-bar-elements {
+/* .search-bar-elements {
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
+} */
+
+.left-section,
+.right-section {
+  display: flex; /* Use flexbox for inner layout */
+  align-items: center; /* Center vertically within each section */
+}
+
+.left-section {
+  padding: 0 10px;
+}
+
+.right-section {
+  margin-right: 10px;
 }
 
 .top-search a {
@@ -26,8 +42,15 @@
   width: 100%;
   padding: 10px;
   border: none;
-  background: #d14f4f; /* Light background color */
-  border-radius: 20px; /* Rounded corners */
-  outline: none; /* Remove outline on focus */
+  background: #d14f4f;
+  border-radius: 20px;
+  outline: none;
   font-size: 16px;
+}
+
+.logoBonApp img {
+  margin-top: 10px;
+  margin-left: 4vw;
+  max-width: 7rem;
+  margin-bottom: 0rem;
 }

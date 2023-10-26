@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./Navbar.css";
+import "./NavBar.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
-import FavPage from "../Pages/FavPage/FavPage";
+import FavPage from "../Pages/FavPage/favPage";
 import CreatePage from "../Pages/CreatePage/CreatePage";
 
 function NavBar() {

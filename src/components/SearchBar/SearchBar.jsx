@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./SearchBar.css";
 import HomePage from "../../Pages/HomePage/HomePage";
 import { Navigate } from "react-router-dom";
+import logoBonApp from "../images/logoBonApp.png";
 
 function SearchBar() {
   /* const [recipes, setRecipes] = useState([]);
@@ -112,25 +113,22 @@ function SearchBar() {
 
   return (
     <div className="top-search">
-      <div>
-        <img
-          src="../images/logo-bonapp.png"
-          alt="Bon App' Logo"
-          style={{ maxHeight: "2rem" }}
-        />
+      <div className="logoBonApp">
+        <img src={logoBonApp} alt="Bon App' Logo" />
       </div>
-      <input
-        className="search-input"
-        type="text"
-        placeholder="Enter an ingredient or a meal name"
-        value={searchInput.query}
-        onChange={handleChange}
-      />
-      <Link to={`/?query=${searchInput.get("query")}`}>
-        <button>Search</button>
-      </Link>
+      <div className="search-section">
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Enter an ingredient or a meal name"
+          value={searchInput.query}
+          onChange={handleChange}
+        />
+        <Link to={`/?query=${searchInput.get("query")}`}>
+          <button>Search</button>
+        </Link>
 
-      {/* <div className="search-bar-elements">
+        {/* <div className="search-bar-elements">
         {mealsIngredients.map((meal) => (
           <Link key={meal.id} to={`/meals/${meal.id}`}>
             <div className="filtered-meal">
@@ -144,6 +142,7 @@ function SearchBar() {
           </Link>
         ))}
       </div> */}
+      </div>
     </div>
   );
 }
