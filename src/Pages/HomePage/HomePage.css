@@ -24,3 +24,16 @@
   transition: transform 0.5s;
   opacity: 1;
 }
+
+.meal-info {
+  overflow: hidden;
+
+  max-width: 35vh;
+}
+
+.meal-info h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+}

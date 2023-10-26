@@ -11,7 +11,12 @@ function NavBar() {
   return (
     <>
       <nav className="bottom-nav">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+        >
           <div>
             <img src="" alt="Home Page" />
           </div>

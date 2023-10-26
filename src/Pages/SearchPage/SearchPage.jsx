@@ -45,6 +45,20 @@ function SearchPage() {
   /* const filteredMeals = selectedCategory
     ? allMeals.filter((meal) => meal.category === selectedCategory)
     : allMeals; */
+  function getRandomDish(categoryOrArea) {
+    const matchingDishes = allMeals.filter(
+      (meal) => meal.category === categoryOrArea || meal.area === categoryOrArea
+    );
+
+    if (matchingDishes.length > 0) {
+      const randomDish =
+        matchingDishes[Math.floor(Math.random() * matchingDishes.length)];
+      return randomDish.image; // Assuming "image" is the property for the dish image
+    }
+
+    // Return a placeholder image if no matching dish is found
+    return "https://zechef.com/wp-content/uploads/2020/09/saucisse-droite-ardeche-boutiquedessaucissons.jpg"; // Replace with the actual path to a placeholder image
+  }
 
   return (
     <>
@@ -58,7 +72,7 @@ function SearchPage() {
               <div className="category">
                 <div className="category-img">
                   <img
-                    src="https://tse3.mm.bing.net/th?id=OIP.4AlkCCZp4Y_HExxSvCZgLAHaEw&pid=Api"
+                    src={getRandomDish(category)}
                     style={{ height: "10vw" }}
                     alt={`${category} Image`}
                   />
@@ -79,7 +93,7 @@ function SearchPage() {
               <div className="country">
                 <div className="country-img">
                   <img
-                    src="https://tse3.mm.bing.net/th?id=OIP.4AlkCCZp4Y_HExxSvCZgLAHaEw&pid=Api"
+                    src={getRandomDish(country)}
                     style={{ height: "10vw" }}
                     alt={`${country} Image`}
                   />

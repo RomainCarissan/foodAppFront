@@ -112,6 +112,13 @@ function SearchBar() {
 
   return (
     <div className="top-search">
+      <div>
+        <img
+          src="../images/logo-bonapp.png"
+          alt="Bon App' Logo"
+          style={{ maxHeight: "2rem" }}
+        />
+      </div>
       <input
         className="search-input"
         type="text"
