@@ -114,34 +114,30 @@ function SearchBar() {
   return (
     <div className="top-search">
       <div className="logoBonApp">
-        <img src={logoBonApp} alt="Bon App' Logo" />
-      </div>
-      <div className="search-section">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Enter an ingredient or a meal name"
-          value={searchInput.query}
-          onChange={handleChange}
-        />
-        <Link to={`/?query=${searchInput.get("query")}`}>
-          <button>Search</button>
+        <Link to={`/`}>
+          <img src={logoBonApp} alt="Bon App' Logo" />
         </Link>
-
-        {/* <div className="search-bar-elements">
-        {mealsIngredients.map((meal) => (
-          <Link key={meal.id} to={`/meals/${meal.id}`}>
-            <div className="filtered-meal">
-              <div className="filtered-meal-img">
-                <img src={meal.image} alt={`${meal.name} Image`} />
-              </div>
-              <div className="filtered-meal-info">
-                <h3>{meal.name}</h3>
-              </div>
-            </div>
+      </div>
+      <div className="wrap">
+        <div className="search-section">
+          <input
+            className="searchTerm"
+            type="text"
+            placeholder="Enter an ingredient or a meal name"
+            value={searchInput.query}
+            onChange={handleChange}
+          />
+          <Link to={`/?query=${searchInput.get("query")}`}>
+            <button className="searchButton">
+              {/* <i className="fa fa-search"></i> */}
+            </button>
           </Link>
-        ))}
-      </div> */}
+        </div>
+      </div>
+      <div className="LoginButton">
+        <Link to={`/connexion`}>
+          <button>Login</button>
+        </Link>
       </div>
     </div>
   );

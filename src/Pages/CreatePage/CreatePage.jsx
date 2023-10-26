@@ -28,8 +28,11 @@ function CreatePage() {
         ];
         const uniqueCountries = [...new Set(mealData.map((meal) => meal.area))];
 
-        setAreasList(uniqueCountries);
-        setCategoriesList(uniqueCategories);
+        const sortedCountries = uniqueCountries.sort();
+        const sortedCategries = uniqueCategories.sort();
+
+        setAreasList(sortedCountries);
+        setCategoriesList(sortedCategries);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
