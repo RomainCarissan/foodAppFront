@@ -7,21 +7,20 @@ function favPage() {
   const [meals, setMeals] = useState(null);
   const [favMember, setFavMember] = useState(null);
   let arrFav = [];
-  let userId = localStorage.getItem("id");
+  let user = JSON.parse(localStorage.getItem("user"));
   /* const [search, setSearch] = useState(""); */
-  console.log(userId);
+  console.log(user);
   async function fetchMeals() {
     try {
       const response = await axios.get("https://foodapp.adaptable.app/meals");
       setMeals(response.data);
-      const answer = await axios.get(
-        "https://foodapp.adaptable.app/members/" + userId
-      );
-      console.log(response.data);
+      // const answer = await axios.get(
+      //   "https://foodapp.adaptable.app/members/" + user
+      // );
+      // console.log(response.data);
       // setFavMember(answer.data[userId].favorite);
       // const fav = answer.data[0].favorite;
       // const user = answer.data.find((user) => user.id === userId);
-      const user = answer.data;
       if (user) {
         setFavMember(user.favorite);
       } else {
@@ -44,11 +43,10 @@ function favPage() {
     return <p>No Favories yet</p>;
   }
 
-  {
-    favMember.map((fav) => {
-      return arrFav.push(fav.id);
-    });
-  }
+  favMember.map((fav) => {
+    return arrFav.push(fav.id);
+  });
+
   console.log(arrFav);
   /* console.log("meal", meals); */
 
@@ -61,7 +59,6 @@ function favPage() {
               <React.Fragment key={meal.id}>
                 {Number(idmeal) === Number(meal.id) ? (
                   <Link
-                    key={meal.id}
                     to={`/meals/${meal.id}`}
                     data-hidden={meal.data_hidden ? meal.data_hidden : "false"}
                   >

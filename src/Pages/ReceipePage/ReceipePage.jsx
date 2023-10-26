@@ -7,34 +7,47 @@ import { Link } from "react-router-dom";
 function ReceipePage() {
   const [oneReceipe, setOneReceipe] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favMember, setFavMember] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(null);
+  // const [favMember, setFavMember] = useState(null);
   const params = useParams();
 
   // dernier ajout
 
-  async function fetchMembers() {
+  // async function fetchMembers() {
+  //   try {
+  //     const response = await axios.get("https://foodapp.adaptable.app/members");
+  //     // setFavMember(answer.data[userId].favorite);
+  //     // const fav = answer.data[0].favorite;
+  //     // const user = answer.data.find((user) => user.id === userId);
+  //     const user = response.data;
+  //     // console.log(user);
+  //     if (user) {
+  //       setFavMember(user);
+  //     } else {
+  //       console.log("User not found");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchMembers();
+  // }, []);
+  // dernier ajout
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  async function updateUser() {
     try {
-      const response = await axios.get("https://foodapp.adaptable.app/members");
-      // setFavMember(answer.data[userId].favorite);
-      // const fav = answer.data[0].favorite;
-      // const user = answer.data.find((user) => user.id === userId);
-      const user = response.data;
-      // console.log(user);
-      if (user) {
-        setFavMember(user);
-      } else {
-        console.log("User not found");
-      }
+      const response = await axios.put(
+        "https://foodapp.adaptable.app/members/" + user.id,
+        user
+      );
+      console.log(response);
+      localStorage.setItem("user", JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    fetchMembers();
-  }, []);
-  // dernier ajout
-  let userId = localStorage.getItem("id");
 
   // console.log(params.id);
   useEffect(() => {
@@ -66,18 +79,10 @@ function ReceipePage() {
   }
   const ingredients = oneReceipe.ingredients;
 
-  const handleAddToFavorite = () => {
-    favMember.map((member) => (
-      <React.Fragment key={member.id}>
-        {console.log(userId)}
-        {console.log(member.favorite)}
-        {Number(userId) === Number(member.id)
-          ? member.favorite.push({ id: oneReceipe.id.toString() })
-          : console.log("raté")}
-        {/* {console.log(idmeal)} */}
-      </React.Fragment>
-    ));
-    // setIsFavorite(!isFavorite);
+  const handleAddToFavorite = async (id) => {
+    user.favorite.push({ id: String(id) });
+    await updateUser();
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -104,7 +109,7 @@ function ReceipePage() {
         <Link key={oneReceipe.video} to={oneReceipe.video} target="_blank">
           <p>{oneReceipe.video}</p>
         </Link>
-        <button onClick={handleAddToFavorite}>
+        <button onClick={() => handleAddToFavorite(oneReceipe.id)}>
           {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
       </div>
