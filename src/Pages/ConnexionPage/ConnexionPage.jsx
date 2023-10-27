@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import favPage from "../FavPage/favPage";
+import "./ConnectionPage.css";
 
 function ConnexionPage() {
   const [members, setMembers] = useState(null);
@@ -70,12 +69,14 @@ function ConnexionPage() {
     // }
   };
   return (
-    <div>
+    <div className="form">
       <form onSubmit={handleSubmit}>
         <ul>
-          <li>
-            <label htmlFor="name">Identifiant:</label>
+          <li className="username">
+            <label htmlFor="name">Username</label>
+            <br />
             <input
+              className="inputConnection"
               type="text"
               id="name"
               name="user_name"
@@ -83,9 +84,11 @@ function ConnexionPage() {
               onChange={(event) => setIdInput(event.target.value)}
             />
           </li>
-          <li>
-            <label htmlFor="password">Password:</label>
+          <li className="password">
+            <label htmlFor="password">Password</label>
+            <br />
             <input
+              className="inputsConnection"
               type="password"
               id="password"
               name="user_password"
