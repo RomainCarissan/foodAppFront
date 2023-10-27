@@ -26,7 +26,7 @@ a:hover {
 
 body {
   /* margin: 0; */
-  background-color: whitesmoke;
+  background-color: white;
   margin-top: 7rem;
   margin-bottom: 10rem;
   display: flex;
@@ -48,7 +48,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: rgb(141 43 43);
-  color: white;
+  color: whitesmoke;
   cursor: pointer;
   transition: border-color 0.25s;
 }

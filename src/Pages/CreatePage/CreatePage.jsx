@@ -8,7 +8,7 @@ function CreatePage() {
     name: "",
     area: "",
     category: "",
-    instruction: "",
+    instructions: "",
     ingredients: [{ ingredient: "", quantity: "" }],
     image: "",
     video: "",
@@ -98,7 +98,7 @@ function CreatePage() {
         name: "",
         area: "",
         category: "",
-        instruction: "",
+        instructions: "",
         ingredients: [{ ingredient: "", quantity: "" }],
         image: "",
         video: "",
@@ -163,14 +163,14 @@ function CreatePage() {
         </div>
 
         <div className="createDiv">
-          <label htmlFor="instruction">Instruction</label>
+          <label htmlFor="instructions">Instruction</label>
           <br />
           <textarea
             className="inputCreate"
             required="required"
             type="text"
-            name="instruction"
-            value={recipe.instruction}
+            name="instructions"
+            value={recipe.instructions}
             onChange={handleChange}
           ></textarea>
         </div>

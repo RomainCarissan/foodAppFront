@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./ConnectionPage.css";
 
 function ConnexionPage() {
@@ -76,7 +77,7 @@ function ConnexionPage() {
             <label htmlFor="name">Username</label>
             <br />
             <input
-              className="inputConnection"
+              className="inputsConnection"
               type="text"
               id="name"
               name="user_name"
