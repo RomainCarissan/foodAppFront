@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import "./FilterCountryPage.css";
 
 function FilterPage() {
   const [filteredMeals, setFilteredMeals] = useState(null);
@@ -52,7 +53,8 @@ function FilterPage() {
 
   return (
     <>
-      <div className="filtered-meals">
+      <div className="container-area">
+        {/* <div className="filtered-meals"> */}
         {filteredMeals.map((meal) => {
           return (
             <Link
@@ -60,11 +62,11 @@ function FilterPage() {
               to={`/meals/${meal.id}`}
               /* data-hidden={meal.data_hidden ? meal.data_hidden : "false"} */
             >
-              <div className="filtered-meal">
-                <div className="filtered-meal-img">
+              <div className="filtered-meal-area">
+                <div className="filtered-meal-area-img">
                   <img src={meal.image} alt={`${meal.name} Image`} />
                 </div>
-                <div className="filtered-meal-info">
+                <div className="filtered-meal-area-info">
                   <h3>{meal.name}</h3>
                 </div>
               </div>
@@ -72,6 +74,7 @@ function FilterPage() {
           );
         })}
       </div>
+      {/* </div> */}
     </>
   );
 }

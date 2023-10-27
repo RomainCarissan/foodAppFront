@@ -9,9 +9,9 @@
 .container {
   display: flex;
   /* -webkit-display: box;
-  -moz-display: box;
-  -ms-display: flexbox;
-  -webkit-display: flex; */
+    -moz-display: box;
+    -ms-display: flexbox;
+    -webkit-display: flex; */
   justify-content: center;
   flex-wrap: wrap;
   padding: 0;
@@ -19,9 +19,9 @@
 }
 
 /* img {
-  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-} */
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  } */
 
 .meal-img :hover {
   transform: scale(1.05);

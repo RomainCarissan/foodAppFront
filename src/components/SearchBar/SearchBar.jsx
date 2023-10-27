@@ -7,6 +7,7 @@ import "./SearchBar.css";
 import HomePage from "../../Pages/HomePage/HomePage";
 import { Navigate } from "react-router-dom";
 import logoBonApp from "../images/logoBonApp.png";
+import searchIcon from "../images/searchIcon.png";
 
 function SearchBar() {
   /* const [recipes, setRecipes] = useState([]);
@@ -102,7 +103,6 @@ function SearchBar() {
   const handleChange = (e) => {
     setSearchInput((params) => {
       params.set("query", e.target.value);
-      /* Navigate(`/${params}`); */
       return params;
     });
   };
@@ -114,34 +114,30 @@ function SearchBar() {
   return (
     <div className="top-search">
       <div className="logoBonApp">
-        <img src={logoBonApp} alt="Bon App' Logo" />
-      </div>
-      <div className="search-section">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Enter an ingredient or a meal name"
-          value={searchInput.query}
-          onChange={handleChange}
-        />
-        <Link to={`/?query=${searchInput.get("query")}`}>
-          <button>Search</button>
+        <Link to={`/`}>
+          <img src={logoBonApp} alt="Bon App' Logo" />
         </Link>
-
-        {/* <div className="search-bar-elements">
-        {mealsIngredients.map((meal) => (
-          <Link key={meal.id} to={`/meals/${meal.id}`}>
-            <div className="filtered-meal">
-              <div className="filtered-meal-img">
-                <img src={meal.image} alt={`${meal.name} Image`} />
-              </div>
-              <div className="filtered-meal-info">
-                <h3>{meal.name}</h3>
-              </div>
-            </div>
+      </div>
+      <div className="wrap">
+        <div className="search-section">
+          <input
+            className="searchTerm"
+            type="text"
+            placeholder="Enter an ingredient or a meal name"
+            value={searchInput.query}
+            onChange={handleChange}
+          />
+          <Link to={`/?query=${searchInput.get("query")}`}>
+            <button className="searchButton">
+              <img id="searchIcon" src={searchIcon} alt="search-icon" />
+            </button>
           </Link>
-        ))}
-      </div> */}
+        </div>
+      </div>
+      <div className="LoginButton">
+        <Link to={`/connection`}>
+          <button>Login</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function RegisterPage() {
@@ -64,6 +65,7 @@ function RegisterPage() {
               onChange={handleChange}
             />
           </li> */}
+
             <li className="username">
               <label htmlFor="username">Username</label>
               <br />
@@ -102,6 +104,7 @@ function RegisterPage() {
           You already have an account, sign in here
         </button>
       </div>
+
     </>
   );
 }

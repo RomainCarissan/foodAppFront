@@ -48,10 +48,18 @@ function HomePage() {
         const myRegex = new RegExp(query, "gi");
         return myRegex.test(ingredient.ingredient);
       });
-      const isThereTheName = meal.name
-        .toLowerCase()
-        .includes(query.toLowerCase());
-      return isThereTheIngredient || isThereTheName;
+
+      const queryRegex = new RegExp(query, "gi");
+      const isThereTheName = queryRegex.test(meal.name);
+      const isThereTheCountry = queryRegex.test(meal.area);
+      const isThereTheCategory = queryRegex.test(meal.category);
+
+      return (
+        isThereTheIngredient ||
+        isThereTheName ||
+        isThereTheCountry ||
+        isThereTheCategory
+      );
     });
   } else {
     filteredMeals = meals;
@@ -64,24 +72,6 @@ function HomePage() {
   return (
     <>
       <div className="container">
-        {/* <form action="">
-          <input
-            placeholder="Seach"
-            type="text"
-            value={search}
-            onChange={(e) => {
-              const copyBeers = [...beers];
-
-              copyBeers.map((beer) => {
-                if (beer.name.indexOf(e.target.value) > -1) {
-                  return { ...beer, data_hidden: "true" };
-                } else {
-                  return { ...beer };
-                }
-              });
-            }}
-          />
-        </form> */}
         {filteredMeals.map((meal) => {
           return (
             <Link
@@ -95,13 +85,6 @@ function HomePage() {
                 </div>
                 <div className="meal-info">
                   <h3>{meal.name}</h3>
-                  {/* <p>
-                    <span>Created by: </span>
-                    {beer.contributed_by &&
-                    beer.contributed_by.indexOf(" <") > -1
-                      ? beer.contributed_by.split(" <")[0]
-                      : beer.contributed_by}
-                  </p> */}
                 </div>
               </div>
             </Link>

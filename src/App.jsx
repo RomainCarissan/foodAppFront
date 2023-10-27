@@ -27,7 +27,7 @@ function App() {
         <Route path="/meals/:id" element={<ReceipePage />} />
         <Route path="/favorites" element={<FavPage />} />
 
-        <Route path="/connexion" element={<ConnexionPage />} />
+        <Route path="/connection" element={<ConnexionPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
         <Route path="/search/:category" element={<FilterPage />} />
