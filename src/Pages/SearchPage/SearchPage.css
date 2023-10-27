@@ -8,3 +8,7 @@
   background-size: cover;
   height: 17rem;
 }
+
+.react-slideshow-container .default-nav {
+  background: none;
+}

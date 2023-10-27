@@ -97,7 +97,9 @@ function ConnexionPage() {
             <button type="submit">Submit</button>
           </div>
           <div className="button">
-            <button type="create">Create new account</button>
+            <Link to={`/register`}>
+              <button type="create">Create new account</button>
+            </Link>
           </div>
         </ul>
       </form>

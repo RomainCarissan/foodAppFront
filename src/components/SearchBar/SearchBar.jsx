@@ -137,7 +137,7 @@ function SearchBar() {
         </div>
       </div>
       <div className="LoginButton">
-        <Link to={`/connexion`}>
+        <Link to={`/connection`}>
           <button>Login</button>
         </Link>
       </div>

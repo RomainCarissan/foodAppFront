@@ -26,6 +26,7 @@ a:hover {
 
 body {
   /* margin: 0; */
+  background-color: whitesmoke;
   margin-top: 7rem;
   margin-bottom: 10rem;
   display: flex;

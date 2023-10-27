@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function RegisterPage() {
@@ -94,9 +95,9 @@ function RegisterPage() {
           <div className="button"></div>
         </ul>
       </form>
-      <button href="url/connexion" type="connexion">
-        You already have an account, sign in here
-      </button>
+      <Link to={`/connection`}>
+        <button>You already have an account, sign in here</button>
+      </Link>
     </>
   );
 }
