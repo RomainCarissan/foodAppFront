@@ -48,15 +48,7 @@ function HomePage() {
         const myRegex = new RegExp(query, "gi");
         return myRegex.test(ingredient.ingredient);
       });
-      /* const isThereTheName = meal.name
-        .toLowerCase()
-        .includes(query.toLowerCase());
-      const isThereTheCountry = meal.area
-        .toLowerCase()
-        .includes(query.toLowerCase());
-      const isThereTheCategory = meal.category
-        .toLowerCase()
-        .includes(query.toLowerCase()); */
+
       const queryRegex = new RegExp(query, "gi");
       const isThereTheName = queryRegex.test(meal.name);
       const isThereTheCountry = queryRegex.test(meal.area);

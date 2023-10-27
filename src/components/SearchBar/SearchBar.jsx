@@ -103,7 +103,6 @@ function SearchBar() {
   const handleChange = (e) => {
     setSearchInput((params) => {
       params.set("query", e.target.value);
-      /* Navigate(`/${params}`); */
       return params;
     });
   };
@@ -130,7 +129,6 @@ function SearchBar() {
           />
           <Link to={`/?query=${searchInput.get("query")}`}>
             <button className="searchButton">
-              {/* <i className="fa fa-search"></i> */}
               <img id="searchIcon" src={searchIcon} alt="search-icon" />
             </button>
           </Link>
