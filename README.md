@@ -28,7 +28,7 @@ While Bon App' is already a fantastic tool for cooking enthusiasts, we're commit
 
 Bon App' was crafted with love and passion by a talented 👀 team of developers:
 
-- **Victor Deveau**
+- **Victor Duveau**
 - **Romain Carissan**
 - **Fabien Lacardelle**
 
